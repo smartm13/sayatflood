@@ -189,7 +189,7 @@ def makecookie(setcookie):
 def try1(url,writeup,k=1):
 	import requests
 	import js2py
-	jscode ='function mainwa(r){function n(r){return"0123456789abcdefghijklmnopqrstuvwxyz".charAt(r)}var t,a=[];t=r;var e,f,h="",o=0;for(e=0;e<t.length&&"="!=t.charAt(e);++e)v="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".indexOf(t.charAt(e)),0>v||(0==o?(h+=n(v>>2),f=3&v,o=1):1==o?(h+=n(f<<2|v>>4),f=15&v,o=2):2==o?(h+=n(f),h+=n(v>>2),f=3&v,o=3):(h+=n(f<<2|v>>4),h+=n(15&v),o=0));for(1==o&&(h+=n(f<<2)),t=h,e=[],h=0;2*h<t.length;++h)e[h]=parseInt(t.substring(2*h,2*h+2),16);for(k=e[0],i=1;i<e.length;++i)a[i-1]=e[i]^k;return a=String.fromCharCode.apply(String,a)}'
+	jscode='function MAINwa(RR){var RET="x";function d(g){return"0123456789abcdefghijklmnopqrstuvwxyz".charAt(g)}; function NN(){var g=[],e;e=RR;var a="",b,c=0,f;for(b=0;b<e.length&&"="!=e.charAt(b);++b)v="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".indexOf(e.charAt(b)),0>v||(0==c?(a+=d(v>>2),f=v&3,c=1):1==c?(a+=d(f<<2|v>>4),f=v&15,c=2):2==c?(a+=d(f),a+=d(v>>2),f=v&3,c=3):(a+=d(f<<2|v>>4),a+=d(v&15),c=0));1==c&&(a+=d(f<<2));e=a;b=[];for(a=0;2*a<e.length;++a)b[a]=parseInt(e.substring(2*a,2*a+2),16);k=b[0];for(i=1;i<b.length;++i)g[i-1]=b[i]^k;g=String.fromCharCode.apply(String,g);return g;}; return NN()}'
 	bar2foo = js2py.eval_js(jscode) 
 	r=requests.get(url)
 	rc=r.content
