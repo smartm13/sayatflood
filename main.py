@@ -160,7 +160,7 @@ def bsnl():
     if sum([writeup.count(idata) for idata in blacklist.keys()]):
         class RRR:content="dhoka"
         r,msg=RRR(),blacklist[filter((lambda x:writeup.count(x)),blacklist.keys())[0]]
-    else:msg,r=try1(mob,writeup,k)
+    else:msg,r=try2(mob,writeup,k)
     
     returns= json.dumps({'show':msg if r else 'Failing [check url]','log':unicode(r.content if r else 'failed',errors='ignore')})
     
@@ -220,3 +220,15 @@ def try1(url,writeup,k=1):
 	strm=mc.find('wrap-words">')+12
 	op=mc[strm:mc.find('</',strm)]
 	return op,m
+
+def try2(URL,MSG,k=1):
+    import requests,json
+    UNM=URL.split("/")[-1]
+    cooked=requests.get('https://sayat.me/'+UNM, headers={'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'}).cookies.get_dict()
+    qid=requests.get('https://sayat.me/api/v1/questions/{}?limit=1'.format(UNM), headers={'accept': 'application/vnd.react+json'},cookies=cooked).json()
+    if 'result' not in qid:return False
+    qid=qid['result'][0]
+    for i in range(int(k)):
+        mainR = requests.post('https://sayat.me/api/v1/answers/question/{}/{}'.format(UNM,qid), headers={'content-type': 'application/json','accept': 'application/vnd.react+json'}, data=json.dumps({"text":MSG,"override":None,"anonymous":True}),cookies=cooked)
+        if 'result' not in mainR.json():break
+    return 'result' in mainR.json()
