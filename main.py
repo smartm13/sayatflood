@@ -235,7 +235,8 @@ def try2(URL,MSG,k=1):
     for i in range(int(k)):
         mainR = requests.post('https://sayat.me/api/v1/answers/question/{}/{}'.format(UNM,qid), headers={'content-type': 'application/json','accept': 'application/vnd.react+json'}, data=json.dumps({"text":MSG,"override":None,"anonymous":True}),cookies=cooked)
         if 'result' not in mainR.json():break
-    return 'result' in mainR.json()
+    msg="Told/Spammed." if 'result' in mainR.json() else "Failing..check logs"
+    return msg,mainR
 
 
 
