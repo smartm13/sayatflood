@@ -166,7 +166,7 @@ def bsnl():
         r,msg=RRR(),blacklist[filter((lambda x:writeup.count(x)),blacklist.keys())[0]]
     else:msg,r=try2(mob,writeup,k)
     
-    returns= json.dumps({'show':msg if r else 'Failing [check url]','log':unicode(r.content if r else 'failed',errors='ignore')})
+    returns= json.dumps({'show':msg if r else 'Failing [check url]','log':str(r.text if r else 'failed')})
     
     resp = Response(returns)
     sender=request.headers.get('origin')
