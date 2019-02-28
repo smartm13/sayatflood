@@ -1,6 +1,8 @@
 from flask import Flask,request,Response
-from requests_toolbelt.adapters import appengine
-appengine.monkeypatch()
+try:
+    from requests_toolbelt.adapters import appengine
+    appengine.monkeypatch()
+except:pass
 import requests,json
 app = Flask(__name__)
 app.config['DEBUG'] = True
@@ -232,3 +234,10 @@ def try2(URL,MSG,k=1):
         mainR = requests.post('https://sayat.me/api/v1/answers/question/{}/{}'.format(UNM,qid), headers={'content-type': 'application/json','accept': 'application/vnd.react+json'}, data=json.dumps({"text":MSG,"override":None,"anonymous":True}),cookies=cooked)
         if 'result' not in mainR.json():break
     return 'result' in mainR.json()
+
+
+
+
+
+if __name__=="__main__":
+    app.run(host='0.0.0.0', port=5000,threaded=True,debug=True)
