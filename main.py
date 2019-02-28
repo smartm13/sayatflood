@@ -157,11 +157,10 @@ def bsnl():
     import json,urllib
     try:
         urllib.unquote
-	unquote=lambda s:urllib.unquote(s.encode()).decode('utf8')
+        unquote=lambda s:urllib.unquote(s.encode()).decode('utf8')
     except:
-	unquote=__import__("urllib.parse").parse.unquote
+        unquote=__import__("urllib.parse").parse.unquote
     w=unquote(request.args['w'])
-    #print(w)
     mob,writeup,k=request.args['p'],json.loads(w),int(request.args.get('k','1'))
     blacklist={"9409261078":"ZOHAN!!!"}#,"9998623001":"Batman."}
     if sum([writeup.count(idata) for idata in blacklist.keys()]):
@@ -246,4 +245,4 @@ def try2(URL,MSG,k=1):
 
 
 if __name__=="__main__":
-    app.run(host='0.0.0.0', port=5000,threaded=True,debug=True)
+    app.run(host='0.0.0.0', port=8000,threaded=True,debug=True)
