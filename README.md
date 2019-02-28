@@ -10,4 +10,4 @@ Can be deployed on Google Cloud's App Engine without giving any penny or even ca
 
 
 To Run on local: `python main.py`  
-This will start a web service on (all ips of machine at port 5000 )[http://localhost:5000/].
+This will start a web service on [all ips of machine at port 5000](http://127.0.0.1:5000/).
