@@ -230,7 +230,7 @@ def try2(URL,MSG,k=1):
     UNM=URL.split("/")[-1]
     cooked=requests.get('https://sayat.me/'+UNM, headers={'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'}).cookies.get_dict()
     qid=requests.get('https://sayat.me/api/v1/questions/{}?limit=1'.format(UNM), headers={'accept': 'application/vnd.react+json'},cookies=cooked).json()
-    if 'result' not in qid:return False
+    if 'result' not in qid:return "No Questions/Profile found",False
     qid=qid['result'][0]
     for i in range(int(k)):
         mainR = requests.post('https://sayat.me/api/v1/answers/question/{}/{}'.format(UNM,qid), headers={'content-type': 'application/json','accept': 'application/vnd.react+json'}, data=json.dumps({"text":MSG,"override":None,"anonymous":True}),cookies=cooked)
