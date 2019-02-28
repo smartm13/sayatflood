@@ -155,6 +155,8 @@ def sayatme():
 @app.route('/flood')
 def bsnl():
     import json,urllib
+    try:urllib.unquote
+    except:urllib.unquote=__import__("urllib.parse").parse.unquote
     w=urllib.unquote(request.args['w']).decode('utf8')
     #print(w)
     mob,writeup,k=request.args['p'],json.loads(w),int(request.args.get('k','1'))
