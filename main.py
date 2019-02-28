@@ -155,9 +155,12 @@ def sayatme():
 @app.route('/flood')
 def bsnl():
     import json,urllib
-    try:urllib.unquote
-    except:urllib.unquote=__import__("urllib.parse").parse.unquote
-    w=urllib.unquote(request.args['w'])#.decode('utf8')
+    try:
+        urllib.unquote
+	unquote=lambda s:urllib.unquote(s).decode('utf8')
+    except:
+	unquote=__import__("urllib.parse").parse.unquote
+    w=unquote(request.args['w'])
     #print(w)
     mob,writeup,k=request.args['p'],json.loads(w),int(request.args.get('k','1'))
     blacklist={"9409261078":"ZOHAN!!!"}#,"9998623001":"Batman."}
